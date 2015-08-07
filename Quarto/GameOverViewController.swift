@@ -59,5 +59,16 @@ class GameOverViewController: UIViewController {
 			abort()
 		}
 	}
+	
+	@IBAction func shareButtonTapped(sender: AnyObject!){
+		let share = Share()
+		let img = share.screenGrab(self.view)
+		let url = NSURL(fileURLWithPath: "/Users/prathapmurthy/Documents/Quarto/Quarto/bookmark@3x.png")
+		share.shareTextImageAndURL(self,sharingText: "Play",sharingImage: img,sharingURL: url)
+	}
+	
+		
+	
+	
 
 }

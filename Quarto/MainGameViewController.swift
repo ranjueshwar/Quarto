@@ -38,36 +38,25 @@ class MainGameViewController: UIViewController {
 	var isSecondButtonEnabled: Bool = false
 	var isThirdButtonEnabled: Bool = false
 	var isFourthButtonEnabled: Bool = false
+	var isMenuTapped: Bool = false
 	var userEnteredString = ""
 	var timer: NSTimer!
 	var progressBarWidth: CGFloat = 0.0
 	var score: Int = 0
-	var buttonBeep = AVAudioPlayer()
+	var av: AudioHelper!
 	
-	func setupAudioPlayerWithFile(file:NSString, type:NSString) -> AVAudioPlayer  {
- 
-		let path = NSBundle.mainBundle().pathForResource(file as String, ofType: type as String)
-		let url = NSURL.fileURLWithPath(path!)
-		var audioPlayer:AVAudioPlayer?
-			do{
-				audioPlayer = try AVAudioPlayer(contentsOfURL: url)
-			}catch{
-				print("Error while setting up AudioPlayer for : \(file)")
-			}
-		
-		return audioPlayer!
-	}
+
 	
 	override func viewDidLoad() {
-	
-		buttonBeep = self.setupAudioPlayerWithFile("snd_deal", type:"caf")
-		buttonBeep.enableRate = true
-		buttonBeep.rate = 2.0
+		
+		
 		super.viewDidLoad()
 	}
 	
 	override func viewWillAppear(animated: Bool) {
 		super.viewWillAppear(false)
+		av = AudioHelper()
+		av.setbuttonBeep()
 		getWordFromArray()
 		if self.charList != "" {
 			setLetterTile(self.charList)
@@ -80,7 +69,6 @@ class MainGameViewController: UIViewController {
 	}
 	
 	override func viewWillDisappear(animated: Bool) {
-		print("vdis")
 		let fc = FCGameScoreService()
 		fc.setGameScore(score)
 		fc.updateGameScoreandHighestScore()
@@ -151,6 +139,7 @@ class MainGameViewController: UIViewController {
 		self.setTappedLabel(text, enabled: isFirstButtonEnabled)
 		isFirstButtonEnabled = !isFirstButtonEnabled
 		setButtonColor(firstLetterButton, enabled: isFirstButtonEnabled)
+		validateWordFound()
 		
 	}
 	
@@ -160,6 +149,7 @@ class MainGameViewController: UIViewController {
 		self.setTappedLabel(text, enabled: isSecondButtonEnabled)
 		isSecondButtonEnabled = !isSecondButtonEnabled
 		self.setButtonColor(secondLetterButton, enabled: isSecondButtonEnabled)
+		validateWordFound()
 	}
 	
 	
@@ -169,6 +159,7 @@ class MainGameViewController: UIViewController {
 		self.setTappedLabel(text, enabled: isThirdButtonEnabled)
 		isThirdButtonEnabled = !isThirdButtonEnabled
 		self.setButtonColor(thirdLetterButton, enabled: isThirdButtonEnabled)
+		validateWordFound()
 	}
 	
 	
@@ -178,6 +169,7 @@ class MainGameViewController: UIViewController {
 		self.setTappedLabel(text, enabled: isFourthButtonEnabled)
 		isFourthButtonEnabled = !isFourthButtonEnabled
 		self.setButtonColor(fourthLetterButton, enabled: isFourthButtonEnabled)
+		validateWordFound()
 	}
 	
 	func setTappedLabel (c: Character, enabled: Bool){
@@ -218,11 +210,31 @@ class MainGameViewController: UIViewController {
 					print("invalid")
 				}
 			}
-			if self.userEnteredString.characters.count == 4 && isWordFound() {
+		}
+	}
+	
+	func validateWordFound(){
+		if self.userEnteredString.characters.count == 4 {
+			if isWordFound(){
 				print("word found")
 				timerDisplay()
+			}else{
+				timer2Display()
 			}
 		}
+
+	}
+	
+	func timer2Display(){
+		
+		NSTimer.scheduledTimerWithTimeInterval(0.3, target: self, selector: "resetWordLabel", userInfo: nil, repeats: false)
+	}
+	
+	func resetWordLabel(){
+		self.userEnteredString = ""
+		shakeUserEnteredLabel()
+		resetLabels()
+		resetLetterButtons()
 	}
 	
 	func setButtonColor(button:UIButton, enabled: Bool){
@@ -238,6 +250,16 @@ class MainGameViewController: UIViewController {
 		self.timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: "resetScreen", userInfo: nil, repeats: false)
 		}
 	
+	func addTimeUpSubview(){
+		
+		let label = UILabel(frame:CGRect(x: self.view.center.x - ((self.view.bounds.width * 0.75)/2), y: self.view.center.y, width: self.view.bounds.width * 0.75, height: self.view.bounds.height * 0.25))
+		label.text = "time's up"
+		label.textColor = UIColor.blackColor()
+		label.textAlignment = NSTextAlignment.Center
+		label.font = UIFont.systemFontOfSize(30.0)
+		view.addSubview(label)
+	}
+	
 	func updateProgressBar(){
 		
 		let moveLeft = CABasicAnimation(keyPath: "position.x")
@@ -252,22 +274,60 @@ class MainGameViewController: UIViewController {
 		groupAnimation.animations = [moveLeft, shrinkView]
 		groupAnimation.delegate = self
 		
+	
+
 		progressBar.layer.addAnimation(groupAnimation, forKey: "groupAnimation")
 	
+	}
+	
+	func shakeUserEnteredLabel(){
+
+	
+		let animation = CABasicAnimation(keyPath: "position")
+		animation.duration = 0.09
+		animation.repeatCount = 2
+		animation.autoreverses = true
+		animation.fromValue = NSValue(CGPoint: CGPointMake(self.firstLetterLabel.center.x - 5, firstLetterLabel.center.y))
+		animation.toValue = NSValue(CGPoint: CGPointMake(self.firstLetterLabel.center.x + 5, firstLetterLabel.center.y))
+		firstLetterLabel.layer.addAnimation(animation, forKey: "position")
+		
+		animation.fromValue = NSValue(CGPoint: CGPointMake(self.secondLetterLabel.center.x - 5, secondLetterLabel.center.y))
+		animation.toValue = NSValue(CGPoint: CGPointMake(self.secondLetterLabel.center.x + 5, secondLetterLabel.center.y))
+		secondLetterLabel.layer.addAnimation(animation, forKey: "position")
+		
+		animation.fromValue = NSValue(CGPoint: CGPointMake(self.thirdLetterLabel.center.x - 5, thirdLetterLabel.center.y))
+		animation.toValue = NSValue(CGPoint: CGPointMake(self.thirdLetterLabel.center.x + 5, thirdLetterLabel.center.y))
+		thirdLetterLabel.layer.addAnimation(animation, forKey: "position")
+		
+		animation.fromValue = NSValue(CGPoint: CGPointMake(self.fourthLetterLabel.center.x - 5, fourthLetterLabel.center.y))
+		animation.toValue = NSValue(CGPoint: CGPointMake(self.fourthLetterLabel.center.x + 5, fourthLetterLabel.center.y))
+		fourthLetterLabel.layer.addAnimation(animation, forKey: "position")
 	}
 	
 	override func animationDidStop(anim: CAAnimation, finished flag: Bool)
 	{
 		
 		if flag {
-			let vc = self.storyboard?.instantiateViewControllerWithIdentifier("gameover") as! GameOverViewController
-			vc.score = self.score
-			vc.word = self.wordSet.first!
-			self.presentViewController(vc, animated: true, completion: {_ in self.resetTimerAndAnimations()})
+				NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: "addTimeUpSubview", userInfo: nil, repeats: false)
+			resetLabels()
+			UIView.animateWithDuration(0.5, delay: 0.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: {self.topStackView.alpha = 0}, completion: nil)
+			UIView.animateWithDuration(0.8, delay: 0.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: {self.progressBar.alpha = 0}, completion: nil)
+				UIView.animateWithDuration(0.8, delay: 0.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: {self.staticProgressBar.alpha = 0}, completion: nil)
+			
+			UIView.animateWithDuration(1.0, delay: 0.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: {self.bottomStackView.alpha = 0}, completion: { _ in self.presentGameOverScreen() })
+	
 		}
 	}
 	
+	func presentGameOverScreen(){
+		let vc = self.storyboard?.instantiateViewControllerWithIdentifier("gameover") as! GameOverViewController
+		vc.score = self.score
+		vc.word = self.wordSet.first!
+		self.presentViewController(vc, animated: true, completion: {_ in self.resetTimerAndAnimations()})
+	}
+	
 	func resetScreen(){
+		isMenuTapped = false
 		resetProgressBar()
 		progressBar.backgroundColor = UIColor.blueColor()
 		self.userEnteredString = ""
@@ -317,7 +377,7 @@ class MainGameViewController: UIViewController {
 	
 	func updateScore(){
 			++score
-			scoreLabel.text = String(score)
+			scoreLabel.text = "Score : " + String(score)
 	}
 	
 	func resetTimerAndAnimations(){
@@ -325,12 +385,36 @@ class MainGameViewController: UIViewController {
 				if self.timer != nil {
 					self.timer.invalidate()
 				}
+		self.view.window?.layer.removeAnimationForKey("FromRight")
+		self.view.window?.layer.removeAllAnimations()
 	}
+	
 	func playButtonSound(){
-		if buttonBeep.playing{
-			buttonBeep.stop()
-		}
-		buttonBeep.play()
+		av.playbuttonBeep()
+	}
+	
+	@IBAction func menuButtonTapped(sender : UIButton!){
+		isMenuTapped = !isMenuTapped
+		if isMenuTapped {
+			sender.setTitle("Tap again to exit", forState:  UIControlState.Normal)
+			
+		}else{
+		self.presentMainMenu()
+	}
+	}
+	
+	func presentMainMenu(){
+		
+		let animation = CATransition()
+		animation.duration = 0.5
+		animation.type = kCATransitionPush
+		animation.subtype = kCATransitionFromLeft
+		animation.timingFunction = CAMediaTimingFunction(name: "easeInEaseOut")
+		
+		let vc = self.storyboard?.instantiateViewControllerWithIdentifier("MainMenu") as! MainMenuViewController
+		self.view.window?.layer.addAnimation(animation, forKey: "FromLeft")
+		
+		self.presentViewController(vc, animated: false, completion: {self.resetTimerAndAnimations()})
 	}
 	
 }

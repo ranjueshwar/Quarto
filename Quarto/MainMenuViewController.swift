@@ -10,7 +10,7 @@ import UIKit
 import QFramework
 
 class MainMenuViewController: UIViewController {
-
+	
 	@IBOutlet weak var mainStackView: UIStackView!
 	@IBOutlet weak var titleStackView: UIStackView!
 	@IBOutlet weak var scoreStackView: UIStackView!
@@ -25,7 +25,7 @@ class MainMenuViewController: UIViewController {
 	@IBOutlet weak var dictionaryButton: UIButton!
 	@IBOutlet weak var loginWithFBButton: UIButton!
 	@IBOutlet weak var bestScoreLabel: UILabel!
-	@IBOutlet weak var menuExpView: UIView!
+	@IBOutlet weak var bottomStackView: UIStackView!
 	@IBOutlet weak var qLabel: UILabel!
 	@IBOutlet weak var uLabel: UILabel!
 	@IBOutlet weak var aLabel: UILabel!
@@ -41,11 +41,14 @@ class MainMenuViewController: UIViewController {
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-	
+		self.menuColStackView.hidden = false
+		self.menuExpStackView.hidden = true
 	}
 	
 	override func viewWillAppear(animated: Bool) {
-		 circleView = CircleView(frame: view.frame)
+		
+		bestScoreLabel.text = String(FCGameScoreService().getHighestScore())
+		circleView = CircleView(frame: view.frame)
 		secondCircleView = CircleView(frame: view.frame)
 		view.addSubview(circleView)
 		view.addSubview(secondCircleView)
@@ -54,32 +57,34 @@ class MainMenuViewController: UIViewController {
 	}
 	
 	override func viewDidAppear(animated: Bool) {
+		print("vds")
+		
+		self.bottomStackView.layer.position.y = self.bottomStackView.layer.position.y + (self.bottomStackView.bounds.height/2)
+		self.menuColStackView.hidden = true
+		self.menuExpStackView.hidden = false
 		animations()
 		NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("resumeAnimations"), name: UIApplicationDidBecomeActiveNotification, object: nil)
-		
-		
+		print("vde")
 	}
 	
 	override func viewWillDisappear(animated: Bool) {
-		print("pause animations")
+		
 		
 	}
 	
 	override func viewDidDisappear(animated: Bool) {
-		print("view did gisappear")
-		
-	
+		removeAllAnimations()
 	}
-
+	
 	override func didReceiveMemoryWarning() {
 		super.didReceiveMemoryWarning()
 	}
 	
 	@IBAction func playButtonTapped(sender: UIButton!){
 		
-		UIView.animateWithDuration(1.5, delay: 0.0, usingSpringWithDamping: 0.2,
-			initialSpringVelocity: 0.0, options:[ UIViewAnimationOptions.Autoreverse ,UIViewAnimationOptions.Repeat ] , animations: {
-				self.playButton.bounds.size.width += 80.0
+		UIView.animateWithDuration(0.5, delay: 0.0, usingSpringWithDamping: 1.0,
+			initialSpringVelocity: 0.0, options:[ UIViewAnimationOptions.CurveEaseInOut ] , animations: {
+				self.playButton.bounds.size.width += 10.0
 			}, completion: {_ in self.setWordsArr()})
 		
 	}
@@ -87,17 +92,23 @@ class MainMenuViewController: UIViewController {
 	@IBAction func menuButtonTapped(sender: UIButton!){
 		menuButtonPressed = !menuButtonPressed
 		if menuButtonPressed {
-			menuExpStackView.hidden = false
-			//addMenuView()
+			UIView.transitionWithView(menuExpStackView, duration: 0.3, options:[UIViewAnimationOptions.CurveEaseInOut]
+				, animations: {
+					self.bottomStackView.layer.position.y = self.bottomStackView.layer.position.y - (self.bottomStackView.bounds.height/2)
+				}, completion: nil)
 		} else {
-			menuExpStackView.hidden = true
-			//removeMenuView()
+			UIView.transitionWithView(menuExpStackView, duration: 0.3, options:[UIViewAnimationOptions.CurveEaseInOut]
+				, animations: {
+					self.bottomStackView.layer.position.y = self.bottomStackView.layer.position.y + (self.bottomStackView.bounds.height/2)
+					
+				}, completion: nil)
 		}
 	}
 	
+	
 	func setWordsArr(){
 		if let wordsArr = getWords() {
-			performSegueWithIdentifier("MainGame", sender: wordsArr)
+			presentMainGame(wordsArr)
 		} else {
 			print("no data")
 			abort()
@@ -105,26 +116,23 @@ class MainMenuViewController: UIViewController {
 	}
 	
 	func getWords() -> [QWord]!{
-		 return FCCoreDataService().getWordsData()
+		return FCCoreDataService().getWordsData()
 	}
 	
-	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-		if segue.identifier == "MainGame" {
-			let controller = segue.destinationViewController
-			as! MainGameViewController
-			controller.wordsArray = getWords()
-		}
-	}
+
+		
+
+
 	
 	func resumeAnimations(){
-			animations()
+		animations()
 	}
 	
 	func animations(){
 		var fromValue = self.playButton.center.y
 		
 		let ypos = CABasicAnimation(keyPath: "position.y")
-		ypos.toValue = fromValue - 10.0
+		ypos.toValue = fromValue - 5.0
 		ypos.autoreverses = true
 		ypos.repeatCount = Float.infinity
 		ypos.duration = 1.5
@@ -175,32 +183,7 @@ class MainMenuViewController: UIViewController {
 		NSNotificationCenter.defaultCenter().removeObserver(self)
 	}
 	
-	func addMenuView(){
-		print("add menu view")
-		 menuView = UIView()
-		menuView.frame = CGRect(x: self.buttonsStackView.frame.origin.x, y: self.buttonsStackView.center.y, width: view.frame.width, height: self.buttonsStackView.frame.height/2)
-		
-		menuView.center.x = mainStackView.center.x
-		
-		menuView.backgroundColor = UIColor.lightGrayColor()
-		view.addSubview(menuView)
-		self.buttonsStackView.frame = CGRect(x: self.buttonsStackView.frame.origin.x, y: self.buttonsStackView.frame.origin.y, width: self.buttonsStackView.frame.width, height: self.buttonsStackView.frame.height/2)
-		
-		UIView.animateWithDuration(1.0, delay: 0.0, usingSpringWithDamping: 1.0,
-			initialSpringVelocity: 1.0, options:[ UIViewAnimationOptions.CurveEaseInOut ] , animations: {
-				self.buttonsStackView.alignment = UIStackViewAlignment.Top
-			}, completion: nil)
-		
-		}
-	
-	func removeMenuView(){
-		menuView.removeFromSuperview()
-		self.buttonsStackView.frame = CGRect(x: self.buttonsStackView.frame.origin.x, y: self.buttonsStackView.frame.origin.y, width: self.buttonsStackView.frame.width, height: self.buttonsStackView.frame.height*2)
-		self.buttonsStackView.alignment = UIStackViewAlignment.Center
-	}
-	
 	func removeAllAnimations(){
-		print("removealn")
 		playButton.layer.removeAnimationForKey("ypos")
 		qLabel.layer.removeAllAnimations()
 		uLabel.layer.removeAllAnimations()
@@ -208,10 +191,29 @@ class MainMenuViewController: UIViewController {
 		rLabel.layer.removeAllAnimations()
 		tLabel.layer.removeAllAnimations()
 		oLabel.layer.removeAllAnimations()
+		self.view.window?.layer.removeAnimationForKey("FromRight")
+		self.view.window?.layer.removeAllAnimations()
 	}
 	
 	@IBAction func achievementsButtonTapped( sender: AnyObject!){
 		print(" ach tap")
 	}
+	
+	func presentMainGame(words:[QWord]){
+		
+		let animation = CATransition()
+		animation.duration = 0.5
+		animation.type = kCATransitionPush
+		animation.subtype = kCATransitionFromRight
+		animation.timingFunction = CAMediaTimingFunction(name: "easeInEaseOut")
+		
+		let vc = self.storyboard?.instantiateViewControllerWithIdentifier("MainGame") as! MainGameViewController
+		vc.wordsArray = words
+		self.view.window?.layer.addAnimation(animation, forKey: "FromRight")
+
+		self.presentViewController(vc, animated: false, completion: {self.removeAllAnimations()})
+	}
+	
+	
 }
 
