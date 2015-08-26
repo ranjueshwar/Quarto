@@ -7,3 +7,12 @@
 //
 
 import Foundation
+
+public class Settings {
+	
+	public var music: Bool = true ;
+	public var sfx:Bool = true;
+	public var removeAds = false;
+	//1032952866 - Dummy App's Apple ID
+	//com.ranju.DummyApp.RemoveAds
+}

@@ -8,21 +8,22 @@
 
 import WatchKit
 import Foundation
-import SharedQuartoFrameWork
+import QFrameworkWatch
 
 class FCGameOverInterfaceController: WKInterfaceController {
 	
 	@IBOutlet weak var word: WKInterfaceLabel!
 	@IBOutlet weak var score: WKInterfaceLabel!
+	@IBOutlet weak var play: WKInterfaceButton!
 	
 	
 	
 	override func awakeWithContext(context: AnyObject?) {
 		super.awakeWithContext(context)
 		let arr = context as? [Dictionary<String,AnyObject>]
-		var dict = arr?.first
-		var w: AnyObject? = dict?["word"]
-		var s: AnyObject? = dict?["score"]
+		let dict = arr?.first
+		let w: AnyObject? = dict?["word"]
+		let s: AnyObject? = dict?["score"]
 		if let correctWord: AnyObject = w {
 			word.setText(String(correctWord as! NSString))
 		}
@@ -41,6 +42,9 @@ class FCGameOverInterfaceController: WKInterfaceController {
 		super.didDeactivate()
 	}
 	
+	@IBAction func playButtonTapped(){
+		WKInterfaceController.reloadRootControllersWithNames(["MAIN_MENU"], contexts: [])
+	}
 	
 	
 }

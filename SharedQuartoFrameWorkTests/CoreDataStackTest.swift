@@ -32,7 +32,7 @@ class CoreDataStackTest: XCTestCase {
 	}
 	
 	func testStoreTypeofCoreData(){
-		var storeType = self.coreDataStack.store!.type
+		let storeType = self.coreDataStack.store!.type
 		XCTAssertEqual(storeType, "SQLite", "StoreType is SQLite")
 	}
 	

@@ -17,42 +17,52 @@ class SettingsViewController : UIViewController {
 	@IBOutlet weak var removeAds: UIButton!
 	@IBOutlet weak var moreGames: UIButton!
 	@IBOutlet weak var contactUs: UIButton!
+	@IBOutlet weak var back: UIButton!
 	
 	@IBOutlet var superView: UIView!
 	
 	override func viewDidLoad() {
-		print("superview.width\(superView.bounds.width)")
-		print("superview.height\(superView.bounds.height)")
-		print("superview.leadingx\(superView.leadingAnchor)")
-		print("superview.leadingy\(superView.trailingAnchor)")
-		
+		// Load user preferences
 		
 	}
 	
-	
-	@IBAction func sfxButtonTapped(sender: UIButton!){
-		
-	}
-	
-	@IBAction func musicButtonTapped(sender: UIButton!){
-		
-	}
-	
-	@IBAction func restorePurchasesButtonTapped(sender: UIButton!){
-		
-	}
-	
-	@IBAction func removeAdsButtonTapped(sender: UIButton!){
-		
+	override func viewDidDisappear(animated: Bool) {
+		// Save user preferences
 	}
 	
 	
-	@IBAction func moreGamesButtonTapped(sender: UIButton!){
+	@IBAction func sfxButtonTapped(sender: PushButtonView!){
 		
 	}
 	
-	@IBAction func contactUsButtonTapped(sender: UIButton!){
+	@IBAction func musicButtonTapped(sender: PushButtonView!){
+		sender.isButtonPressed = !sender.isButtonPressed
+		sender.setNeedsDisplayInRect(sender.bounds)
+	}
+	
+	@IBAction func restorePurchasesButtonTapped(sender: PushButtonView!){
 		
+	}
+	
+	@IBAction func removeAdsButtonTapped(sender: PushButtonView!){
+		let vc = self.storyboard?.instantiateViewControllerWithIdentifier("IAP") as! IAPurchaseViewController
+		self.presentViewController(vc, animated: false, completion: nil)
+	}
+	
+	
+	@IBAction func moreGamesButtonTapped(sender: PushButtonView!){
+		
+	}
+	
+	@IBAction func contactUsButtonTapped(sender: PushButtonView!){
+		
+	}
+	
+	@IBAction func backButtonTapped(sender: UIButton!){
+		let vc = self.storyboard?.instantiateViewControllerWithIdentifier("MainMenu") as! MainMenuViewController
+		
+		
+		self.presentViewController(vc, animated: false, completion: nil)
 	}
 	
 	

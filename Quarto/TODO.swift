@@ -24,3 +24,14 @@
 
  The above piece of code changes the view's frame, hence removed and used CAbasicAnimation
 -------------------------------------------------------------*/
+
+/*
+
+vpltestuser01.id@gmail.com 	TestUser01 ID 	Indonesia
+vpltestuser01.in@gmail.com 	TestUser01 IN 	India
+vpltestuser01.jp@gmail.com 	TestUser01 JP 	Japan
+vpltestuser01.uk@gmail.com 	TestUser01 UK 	United Kingdom
+vpltestuser01.us@gmail.com 	TestUser01 US 	United States
+vpltestuser02.us@gmail.com 	TestUser02 US 	United States
+
+*/

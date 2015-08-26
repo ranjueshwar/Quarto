@@ -28,8 +28,7 @@ public class FCGameScoreService {
 	}
 	
 	public func updateGameScoreandHighestScore() {
-		let newScore = getScore() + 1
-		setGameScore(newScore)
+		let newScore = getScore()
 		if newScore > getHighestScore() {
 			setHighestScore(newScore)
 		}

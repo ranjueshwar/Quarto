@@ -8,23 +8,21 @@
 
 import WatchKit
 import Foundation
-import SharedQuartoFrameWork
+import QFrameworkWatch
 
 class InterfaceController: WKInterfaceController {
 	
 	@IBOutlet weak var playButton: WKInterfaceButton!
-	var WordsArr:[SharedQuartoFrameWork.Word]!
+	var WordsArr:[QWord]!
 	
 	override func awakeWithContext(context: AnyObject?) {
-		println("awc")
+	
 		super.awakeWithContext(context)
-		
-		// Configure interface objects here.
 	}
 	
 	override func willActivate() {
 		// This method is called when watch view controller is about to be visible to user
-	
+		setData()
 		super.willActivate()
 	}
 	
@@ -34,13 +32,13 @@ class InterfaceController: WKInterfaceController {
 	}
 	
 	func setData(){
-		var fcCoreDataService = FCCoreDataService()
-		WordsArr = fcCoreDataService.getWords(fcCoreDataService.getRandomNumbersArray(1, upperLimit: 1372, batchSize: 500))
+		let fcCoreDataService = FCCoreDataService()
+		WordsArr = fcCoreDataService.getWords(fcCoreDataService.getRandomNumbersArray(1, upperLimit: 1372, batchSize: 50), context: nil)
 		FCGameScoreService().resetGameScore()
 	}
 	
 	@IBAction func playButtonTapped() {
-		setData()
 		InterfaceController.reloadRootControllersWithNames(["MAIN_GAME"], contexts: [WordsArr])
 	}
+	
 }

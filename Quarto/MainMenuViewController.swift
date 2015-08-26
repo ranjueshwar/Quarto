@@ -57,14 +57,13 @@ class MainMenuViewController: UIViewController {
 	}
 	
 	override func viewDidAppear(animated: Bool) {
-		print("vds")
+		
 		
 		self.bottomStackView.layer.position.y = self.bottomStackView.layer.position.y + (self.bottomStackView.bounds.height/2)
 		self.menuColStackView.hidden = true
 		self.menuExpStackView.hidden = false
 		animations()
 		NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("resumeAnimations"), name: UIApplicationDidBecomeActiveNotification, object: nil)
-		print("vde")
 	}
 	
 	override func viewWillDisappear(animated: Bool) {
@@ -214,6 +213,9 @@ class MainMenuViewController: UIViewController {
 		self.presentViewController(vc, animated: false, completion: {self.removeAllAnimations()})
 	}
 	
+	@IBAction func settingsButtonTapped( sender: UIButton){
+		self.performSegueWithIdentifier("settingsSegue", sender: sender)
+	}
 	
 }
 

@@ -10,24 +10,33 @@ import CoreData
 
 public class DataManager: NSObject {
 	
-	public class func getContext() -> NSManagedObjectContext {
+	public enum DataManagerContextType : UInt {
+		case PrivateQueueConcurrencyType
+		case MainQueueConcurrencyType
+	}
+	
+	public class func getContext( ctxtType: DataManagerContextType = DataManagerContextType.MainQueueConcurrencyType) -> NSManagedObjectContext {
+		if ctxtType == DataManagerContextType.PrivateQueueConcurrencyType {
+			return CoreDataStack.coreDataStackInstance.getPrivateContext()
+		} else {
 			return CoreDataStack.coreDataStackInstance.context
-	}
-	
-	public class func deleteManagedObject(object:NSManagedObject) {
-		getContext().deleteObject(object)
-		saveManagedContext()
-	}
-	
-	public class func saveManagedContext() {
-		var error: NSErrorPointer!
-		if !getContext().save(error){
-			
-			NSLog("Unresolved error saving context \(error)")
-			
 		}
-		
 	}
+
+//	public func deleteManagedObject(object:NSManagedObject) {
+//		getContext().deleteObject(object)
+//		saveManagedContext()
+//	}
+//	
+//	public func saveManagedContext() {
+//		
+//		do {
+//			try getContext().save()
+//		} catch {
+//				NSLog("Unresolved error saving context \(error)")
+//		}
+	
+	//}
 	
 	
 }
