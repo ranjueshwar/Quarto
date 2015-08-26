@@ -56,6 +56,7 @@
 		0FC1E67A1B442EF100AF3244 /* FourCharactersModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0FC1E6781B442EF100AF3244 /* FourCharactersModel.xcdatamodeld */; };
 		0FC1E6811B442F3600AF3244 /* QWord+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC1E67F1B442F3600AF3244 /* QWord+CoreDataProperties.swift */; };
 		0FC1E6821B442F3600AF3244 /* QWord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC1E6801B442F3600AF3244 /* QWord.swift */; };
+		0FC2AABA1B8E07CE00C4AA94 /* QuartoLogicTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC2AAB91B8E07CE00C4AA94 /* QuartoLogicTests.swift */; };
 		0FC714CE1B300FF600C32093 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC714CD1B300FF600C32093 /* AppDelegate.swift */; };
 		0FC714D01B300FF600C32093 /* MainMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC714CF1B300FF600C32093 /* MainMenuViewController.swift */; };
 		0FC714D31B300FF600C32093 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0FC714D11B300FF600C32093 /* Main.storyboard */; };
@@ -117,6 +118,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 0F894E711B36C1E500C45C6B;
 			remoteInfo = QFrameworkWatch;
+		};
+		0FC2AABC1B8E07CE00C4AA94 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0FC714C01B300FF600C32093 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0FC714C71B300FF600C32093;
+			remoteInfo = Quarto;
 		};
 		0FC714DE1B300FF600C32093 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -213,6 +221,9 @@
 		0FC1E6791B442EF100AF3244 /* FourCharactersModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FourCharactersModel.xcdatamodel; sourceTree = "<group>"; };
 		0FC1E67F1B442F3600AF3244 /* QWord+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "QWord+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		0FC1E6801B442F3600AF3244 /* QWord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QWord.swift; sourceTree = "<group>"; };
+		0FC2AAB71B8E07CE00C4AA94 /* QuartoLogicTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QuartoLogicTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0FC2AAB91B8E07CE00C4AA94 /* QuartoLogicTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuartoLogicTests.swift; sourceTree = "<group>"; };
+		0FC2AABB1B8E07CE00C4AA94 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0FC714C81B300FF600C32093 /* Quarto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Quarto.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0FC714CC1B300FF600C32093 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0FC714CD1B300FF600C32093 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -268,6 +279,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		0F894E6E1B36C1E500C45C6B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0FC2AAB41B8E07CE00C4AA94 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -334,6 +352,15 @@
 			path = QFrameworkWatch;
 			sourceTree = "<group>";
 		};
+		0FC2AAB81B8E07CE00C4AA94 /* QuartoLogicTests */ = {
+			isa = PBXGroup;
+			children = (
+				0FC2AAB91B8E07CE00C4AA94 /* QuartoLogicTests.swift */,
+				0FC2AABB1B8E07CE00C4AA94 /* Info.plist */,
+			);
+			path = QuartoLogicTests;
+			sourceTree = "<group>";
+		};
 		0FC714BF1B300FF600C32093 = {
 			isa = PBXGroup;
 			children = (
@@ -346,6 +373,7 @@
 				0F894E511B36C1C400C45C6B /* QFramework */,
 				0F894E5F1B36C1C500C45C6B /* QFrameworkTests */,
 				0F894E731B36C1E600C45C6B /* QFrameworkWatch */,
+				0FC2AAB81B8E07CE00C4AA94 /* QuartoLogicTests */,
 				0FC714C91B300FF600C32093 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -360,6 +388,7 @@
 				0F894E501B36C1C400C45C6B /* QFramework.framework */,
 				0F894E591B36C1C400C45C6B /* QFrameworkTests.xctest */,
 				0F894E721B36C1E500C45C6B /* QFrameworkWatch.framework */,
+				0FC2AAB71B8E07CE00C4AA94 /* QuartoLogicTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -552,6 +581,24 @@
 			productReference = 0F894E721B36C1E500C45C6B /* QFrameworkWatch.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		0FC2AAB61B8E07CE00C4AA94 /* QuartoLogicTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0FC2AABE1B8E07CE00C4AA94 /* Build configuration list for PBXNativeTarget "QuartoLogicTests" */;
+			buildPhases = (
+				0FC2AAB31B8E07CE00C4AA94 /* Sources */,
+				0FC2AAB41B8E07CE00C4AA94 /* Frameworks */,
+				0FC2AAB51B8E07CE00C4AA94 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				0FC2AABD1B8E07CE00C4AA94 /* PBXTargetDependency */,
+			);
+			name = QuartoLogicTests;
+			productName = QuartoLogicTests;
+			productReference = 0FC2AAB71B8E07CE00C4AA94 /* QuartoLogicTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		0FC714C71B300FF600C32093 /* Quarto */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0FC714E71B300FF600C32093 /* Build configuration list for PBXNativeTarget "Quarto" */;
@@ -650,6 +697,10 @@
 						CreatedOnToolsVersion = 7.0;
 						DevelopmentTeam = 6DV3B8B27C;
 					};
+					0FC2AAB61B8E07CE00C4AA94 = {
+						CreatedOnToolsVersion = 7.0;
+						TestTargetID = 0FC714C71B300FF600C32093;
+					};
 					0FC714C71B300FF600C32093 = {
 						CreatedOnToolsVersion = 6.3.2;
 						DevelopmentTeam = 6DV3B8B27C;
@@ -703,6 +754,7 @@
 				0F894E4F1B36C1C400C45C6B /* QFramework */,
 				0F894E581B36C1C400C45C6B /* QFrameworkTests */,
 				0F894E711B36C1E500C45C6B /* QFrameworkWatch */,
+				0FC2AAB61B8E07CE00C4AA94 /* QuartoLogicTests */,
 			);
 		};
 /* End PBXProject section */
@@ -733,6 +785,13 @@
 				0F894E8C1B36C21400C45C6B /* FourCharactersDatabase.sqlite in Resources */,
 				0F894E8B1B36C21400C45C6B /* FourCharactersDatabase.sqlite-wal in Resources */,
 				0F894E8D1B36C21400C45C6B /* FourCharactersDatabase.sqlite-shm in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0FC2AAB51B8E07CE00C4AA94 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -817,6 +876,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		0FC2AAB31B8E07CE00C4AA94 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0FC2AABA1B8E07CE00C4AA94 /* QuartoLogicTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		0FC714C41B300FF600C32093 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -890,6 +957,11 @@
 			isa = PBXTargetDependency;
 			target = 0F894E711B36C1E500C45C6B /* QFrameworkWatch */;
 			targetProxy = 0F894E921B36C28D00C45C6B /* PBXContainerItemProxy */;
+		};
+		0FC2AABD1B8E07CE00C4AA94 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0FC714C71B300FF600C32093 /* Quarto */;
+			targetProxy = 0FC2AABC1B8E07CE00C4AA94 /* PBXContainerItemProxy */;
 		};
 		0FC714DF1B300FF600C32093 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1049,6 +1121,31 @@
 			};
 			name = Release;
 		};
+		0FC2AABF1B8E07CE00C4AA94 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				INFOPLIST_FILE = QuartoLogicTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ranju.QuartoLogicTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Quarto.app/Quarto";
+			};
+			name = Debug;
+		};
+		0FC2AAC01B8E07CE00C4AA94 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = QuartoLogicTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ranju.QuartoLogicTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Quarto.app/Quarto";
+			};
+			name = Release;
+		};
 		0FC714E51B300FF600C32093 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1066,7 +1163,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Prathap Murthy (U65F77C8GQ)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1139,7 +1236,7 @@
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Quarto/Quarto.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Prathap Murthy (U65F77C8GQ)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = Quarto/Info.plist;
@@ -1318,6 +1415,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		0FC2AABE1B8E07CE00C4AA94 /* Build configuration list for PBXNativeTarget "QuartoLogicTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0FC2AABF1B8E07CE00C4AA94 /* Debug */,
+				0FC2AAC01B8E07CE00C4AA94 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 		0FC714C31B300FF600C32093 /* Build configuration list for PBXProject "Quarto" */ = {
 			isa = XCConfigurationList;
