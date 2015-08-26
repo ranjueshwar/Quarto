@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="8121.17" systemVersion="14D136" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="AgC-eL-Hgc">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8101.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="8066.14"/>
+    </dependencies>
+    <scenes>
+        <!--MAIN_MENU-->
+        <scene sceneID="aou-V4-d1y">
+            <objects>
+                <controller identifier="MAIN_MENU" id="AgC-eL-Hgc" customClass="InterfaceController" customModule="Quarto_WatchKit_App" customModuleProvider="target">
+                    <items>
+                        <button width="0.80000000000000004" height="0.29999999999999999" alignment="center" verticalAlignment="center" title="PLAY" id="RbI-fz-0HU">
+                            <color key="backgroundColor" red="0.2901960784" green="0.6705882353" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <fontDescription key="font" type="system" weight="semibold" pointSize="21"/>
+                            <connections>
+                                <action selector="playButtonTapped" destination="AgC-eL-Hgc" id="pky-gY-uIw"/>
+                            </connections>
+                        </button>
+                        <label alignment="center" text="Quarto" textAlignment="center" id="Eeg-vF-8ZN">
+                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <fontDescription key="font" type="system" weight="semibold" pointSize="25"/>
+                        </label>
+                    </items>
+                    <connections>
+                        <outlet property="playButton" destination="RbI-fz-0HU" id="krP-BA-DpU"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="235" y="347"/>
+        </scene>
+        <!--MAIN_GAME-->
+        <scene sceneID="IA3-rN-3Dq">
+            <objects>
+                <controller identifier="MAIN_GAME" id="isV-0N-UpA" customClass="FCGameInterfaceContoller" customModule="Quarto_WatchKit_Extension">
+                    <items>
+                        <group width="1" height="0.25" alignment="center" id="raK-Fl-FaP">
+                            <items>
+                                <label width="0.70000000000000007" alignment="center" verticalAlignment="center" textAlignment="center" id="7Nr-d9-XZj">
+                                    <fontDescription key="font" type="system" pointSize="20"/>
+                                </label>
+                                <timer width="0.30000000000000016" height="1" alignment="right" verticalAlignment="center" textAlignment="center" enabled="YES" format="abbreviated" previewedSeconds="30" id="TnB-fs-Na6">
+                                    <calendarUnit key="units" second="YES"/>
+                                </timer>
+                            </items>
+                        </group>
+                        <group width="1" height="0.75" alignment="center" layout="vertical" id="Pjc-9W-fpR">
+                            <items>
+                                <group width="1" height="0.5" alignment="center" verticalAlignment="center" id="OtQ-Yd-3VG">
+                                    <items>
+                                        <button width="0.5" height="1" alignment="left" title="A" id="opn-zc-qRQ">
+                                            <color key="backgroundColor" red="0.2901960784" green="0.6705882353" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <fontDescription key="font" type="system" pointSize="20"/>
+                                            <connections>
+                                                <action selector="firstButtonTap" destination="isV-0N-UpA" id="5BQ-Uq-gzn"/>
+                                            </connections>
+                                        </button>
+                                        <button width="0.50000000000000011" height="1" alignment="center" verticalAlignment="center" title="B" id="MaL-jN-6Lk">
+                                            <accessibilityTraits key="accessibilityTraits" button="YES" playsSound="YES"/>
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="backgroundColor" red="0.2901960784" green="0.6705882353" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <fontDescription key="font" type="system" pointSize="20"/>
+                                            <connections>
+                                                <action selector="secondButtonTap" destination="isV-0N-UpA" id="Yqa-4L-hlh"/>
+                                            </connections>
+                                        </button>
+                                    </items>
+                                </group>
+                                <group width="1" height="0.50000000000000011" alignment="center" verticalAlignment="center" id="eSb-m9-s0q">
+                                    <items>
+                                        <button width="0.50000000000000011" height="1" alignment="left" title="C" id="fTp-r7-IsW">
+                                            <accessibilityTraits key="accessibilityTraits" button="YES" playsSound="YES"/>
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="backgroundColor" red="0.2901960784" green="0.6705882353" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <fontDescription key="font" type="system" pointSize="20"/>
+                                            <connections>
+                                                <action selector="thirdButtonTap" destination="isV-0N-UpA" id="Qxx-rT-pXx"/>
+                                            </connections>
+                                        </button>
+                                        <button width="0.50000000000000011" height="1" alignment="left" title="D" id="jw3-jH-9t0">
+                                            <accessibilityTraits key="accessibilityTraits" button="YES" playsSound="YES"/>
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="backgroundColor" red="0.2901960784" green="0.6705882353" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <fontDescription key="font" type="system" pointSize="20"/>
+                                            <connections>
+                                                <action selector="fourthButtonTap" destination="isV-0N-UpA" id="ITh-AL-MPG"/>
+                                            </connections>
+                                        </button>
+                                    </items>
+                                </group>
+                            </items>
+                        </group>
+                    </items>
+                    <connections>
+                        <outlet property="firstLetterButton" destination="opn-zc-qRQ" id="Uch-gq-vqs"/>
+                        <outlet property="fourthLetterButton" destination="jw3-jH-9t0" id="fDE-2g-uRI"/>
+                        <outlet property="secondLetterButton" destination="MaL-jN-6Lk" id="jbX-E0-vLK"/>
+                        <outlet property="thirdLetterButton" destination="fTp-r7-IsW" id="K89-qz-jCM"/>
+                        <outlet property="timer" destination="TnB-fs-Na6" id="UTD-8Z-0zE"/>
+                        <outlet property="userEnteredWord" destination="7Nr-d9-XZj" id="beM-CQ-HmQ"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="403" y="347"/>
+        </scene>
+        <!--GAME_OVER-->
+        <scene sceneID="y9N-iW-QdG">
+            <objects>
+                <controller identifier="GAME_OVER" id="fi5-8a-p43" customClass="FCGameOverInterfaceController" customModule="Quarto_WatchKit_Extension">
+                    <items>
+                        <group width="1" height="0.30000000000000016" alignment="center" verticalAlignment="center" layout="vertical" id="eVr-8Y-pdm">
+                            <items>
+                                <label alignment="center" verticalAlignment="center" text="You could have made" textAlignment="center" id="qdK-nt-26d">
+                                    <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
+                                </label>
+                                <label alignment="center" verticalAlignment="bottom" text="ABCD" id="tHu-05-1b1"/>
+                            </items>
+                        </group>
+                        <group width="1" height="0.70000000000000007" alignment="center" verticalAlignment="center" layout="vertical" id="iNm-a9-RHB">
+                            <items>
+                                <separator alignment="center" id="HAe-42-MGv"/>
+                                <label width="1" alignment="center" text="SCORE" textAlignment="center" id="hBg-sz-LPO">
+                                    <fontDescription key="font" style="UICTFontTextStyleSubhead"/>
+                                </label>
+                                <label alignment="center" verticalAlignment="center" text="0" textAlignment="center" id="ZZR-eZ-dWm">
+                                    <fontDescription key="font" type="system" pointSize="30"/>
+                                </label>
+                                <button width="1" height="0.40000000000000002" alignment="center" verticalAlignment="center" title="PLAY" id="HrT-u2-0z4">
+                                    <color key="backgroundColor" red="0.2901960784" green="0.6705882353" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <fontDescription key="font" type="system" pointSize="23"/>
+                                    <connections>
+                                        <action selector="playButtonTapped" destination="fi5-8a-p43" id="WiS-vy-ueJ"/>
+                                    </connections>
+                                </button>
+                            </items>
+                        </group>
+                    </items>
+                    <connections>
+                        <outlet property="score" destination="ZZR-eZ-dWm" id="v7O-Zd-A1l"/>
+                        <outlet property="word" destination="tHu-05-1b1" id="BEU-4u-6sc"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="571" y="340"/>
+        </scene>
+        <!--Glance Interface Controller-->
+        <scene sceneID="BOz-TT-tkC">
+            <objects>
+                <glanceController spacing="0.0" id="0uZ-2p-rRc" customClass="GlanceController" customModule="Quarto_WatchKit_App" customModuleProvider="target">
+                    <items>
+                        <group alignment="left" id="t8f-Gd-c4y"/>
+                        <group alignment="left" id="uCw-4Q-Ouw"/>
+                    </items>
+                    <edgeInsets key="margins" left="0.0" right="0.0" top="0.0" bottom="14"/>
+                </glanceController>
+            </objects>
+            <point key="canvasLocation" x="157" y="771"/>
+        </scene>
+        <!--Static Notification Interface Controller-->
+        <scene sceneID="AEw-b0-oYE">
+            <objects>
+                <notificationController id="YCC-NB-fut">
+                    <items>
+                        <label alignment="left" text="Alert Label" id="XkS-y5-khE"/>
+                    </items>
+                    <notificationCategory key="notificationCategory" identifier="myCategory" id="JfB-70-Muf"/>
+                    <connections>
+                        <outlet property="notificationAlertLabel" destination="XkS-y5-khE" id="49B-RR-99y"/>
+                        <segue destination="gdX-wl-uQE" kind="relationship" relationship="dynamicNotificationInterface" id="fKh-qV-3T2"/>
+                    </connections>
+                </notificationController>
+            </objects>
+            <point key="canvasLocation" x="235" y="1001"/>
+        </scene>
+        <!--Notification Controller-->
+        <scene sceneID="KIl-fV-djm">
+            <objects>
+                <controller id="gdX-wl-uQE" customClass="NotificationController" customModule="Quarto_WatchKit_App" customModuleProvider="target"/>
+            </objects>
+            <point key="canvasLocation" x="553" y="1001"/>
+        </scene>
+    </scenes>
+</document>
