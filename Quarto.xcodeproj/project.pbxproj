@@ -703,7 +703,6 @@
 					};
 					0FC714C71B300FF600C32093 = {
 						CreatedOnToolsVersion = 6.3.2;
-						DevelopmentTeam = 6DV3B8B27C;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
@@ -1240,7 +1239,7 @@
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Quarto/Quarto.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Prathap Murthy (U65F77C8GQ)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = Quarto/Info.plist;
