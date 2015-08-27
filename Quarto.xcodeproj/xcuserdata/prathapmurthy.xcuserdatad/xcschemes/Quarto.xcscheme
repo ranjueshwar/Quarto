@@ -48,6 +48,34 @@
                ReferencedContainer = "container:Quarto.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "0F894E581B36C1C400C45C6B"
+               BuildableName = "QFrameworkTests.xctest"
+               BlueprintName = "QFrameworkTests"
+               ReferencedContainer = "container:Quarto.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "0FC2AAB61B8E07CE00C4AA94"
+               BuildableName = "QuartoLogicTests.xctest"
+               BlueprintName = "QuartoLogicTests"
+               ReferencedContainer = "container:Quarto.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
