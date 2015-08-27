@@ -721,7 +721,6 @@
 					};
 					0FC714F01B30100D00C32093 = {
 						CreatedOnToolsVersion = 6.3.2;
-						DevelopmentTeam = 6DV3B8B27C;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 0;
